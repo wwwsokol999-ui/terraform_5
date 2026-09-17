@@ -37,3 +37,34 @@ variable "ssh_public_key_path" {
   description = "Path to SSH public key"
 }
 
+variable "ip_address" {
+  type        = string
+  description = "IP-адрес"
+
+  default = "192.168.0.1"
+
+  validation {
+    condition     = can(cidrhost("${var.ip_address}/32", 0))
+    error_message = "Значение должно быть корректным IPv4-адресом."
+  }
+}
+
+variable "ip_addresses" {
+  type        = list(string)
+  description = "Список IP-адресов"
+
+  default = [
+    "192.168.0.1",
+    "1.1.1.1",
+    "127.0.0.1"
+  ]
+
+  validation {
+    condition = alltrue([
+      for ip in var.ip_addresses :
+      can(cidrhost("${ip}/32", 0))
+    ])
+
+    error_message = "Все значения должны быть корректными IPv4-адресами."
+  }
+}
