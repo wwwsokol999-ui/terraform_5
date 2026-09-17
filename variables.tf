@@ -31,31 +31,40 @@ variable "vpc_name" {
   description = "VPC network&subnet name"
 }
 
-###common vars
-
-variable "vms_ssh_root_key" {
-  type        = string
-  default     = "your_ssh_ed25519_key"
-  description = "ssh-keygen -t ed25519"
-}
-
-###example vm_web var
-variable "vm_web_name" {
-  type        = string
-  default     = "netology-develop-platform-web"
-  description = "example vm_web_ prefix"
-}
-
-###example vm_db var
-variable "vm_db_name" {
-  type        = string
-  default     = "netology-develop-platform-db"
-  description = "example vm_db_ prefix"
-}
-
 variable "ssh_public_key_path" {
   type        = string
   default     = "~/.ssh/id_rsa.pub"
   description = "Path to SSH public key"
 }
 
+variable "ip_address" {
+  type        = string
+  description = "IP-адрес"
+
+  default = "192.168.0.1"
+
+  validation {
+    condition     = can(cidrhost("${var.ip_address}/32", 0))
+    error_message = "Значение должно быть корректным IPv4-адресом."
+  }
+}
+
+variable "ip_addresses" {
+  type        = list(string)
+  description = "Список IP-адресов"
+
+  default = [
+    "192.168.0.1",
+    "1.1.1.1",
+    "127.0.0.1"
+  ]
+
+  validation {
+    condition = alltrue([
+      for ip in var.ip_addresses :
+      can(cidrhost("${ip}/32", 0))
+    ])
+
+    error_message = "Все значения должны быть корректными IPv4-адресами."
+  }
+}

@@ -15,7 +15,7 @@ data "template_file" "cloudinit" {
 }
 
 module "marketing_vm" {
-  source = "git::https://github.com/udjin10/yandex_compute_instance.git?ref=main"
+  source = "git::https://github.com/udjin10/yandex_compute_instance.git?ref=a230c799304c20f15f0ad761ed704e46f534a821"
 
   env_name       = "marketing"
   network_id     = module.vpc_dev.network_id
@@ -37,7 +37,7 @@ module "marketing_vm" {
 }
 
 module "analytics_vm" {
-  source = "git::https://github.com/udjin10/yandex_compute_instance.git?ref=main"
+  source = "git::https://github.com/udjin10/yandex_compute_instance.git?ref=a230c799304c20f15f0ad761ed704e46f534a821"
 
   env_name       = "analytics"
   network_id     = module.vpc_dev.network_id
