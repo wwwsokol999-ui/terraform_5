@@ -59,6 +59,20 @@ Error: Error acquiring the state lock
 terraform force-unlock <LOCK_ID>
 ```
 
+### Скриншоты задания 2
+
+#### 2-1. Настройка remote state
+![Задание 2 — скриншот 1](2-1.png)
+
+#### 2-2. State в Object Storage
+![Задание 2 — скриншот 2](2-2.png)
+
+#### 2-3. Проверка блокировки state
+![Задание 2 — скриншот 3](2-3.png)
+
+#### 2-4. Разблокировка state
+![Задание 2 — скриншот 4](2-4.png)
+
 ## Задание 3. Hotfix, TFLint и Checkov
 
 Исправления выполнялись в ветке `terraform-hotfix`, созданной от `terraform-05`.
@@ -82,7 +96,7 @@ Terraform has compared your real infrastructure against your configuration
 and found no differences, so no changes are needed.
 ```
 
-Pull Request должен быть направлен из `terraform-hotfix` в `terraform-05` и оставлен без merge.
+Pull Request направлен из `terraform-hotfix` в `terraform-05` и оставлен без merge.
 
 ## Задание 4. Validation для IP-адресов
 
@@ -126,6 +140,14 @@ variable "ip_addresses" {
 ```
 
 Проверены как корректные, так и некорректные значения через `terraform console`.
+
+### Скриншоты задания 4
+
+#### 4-1. Проверка корректных значений
+![Задание 4 — скриншот 1](4-1.png)
+
+#### 4-2. Проверка validation на некорректных значениях
+![Задание 4 — скриншот 2](4-2.png)
 
 ## Итоговая проверка
 
